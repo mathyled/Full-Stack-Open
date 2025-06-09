@@ -1,11 +1,12 @@
 import React from "react";
 import Part from "./Part";
 
-const Content = (props) => {
+const Content = ({part}) => {
+  console.log(part);
   
   return (
     <>
-   <Part props={props}/>
+   <Part props={part}/>
     </>
   );
 };
