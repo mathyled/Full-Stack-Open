@@ -1,13 +1,12 @@
 import Ract from "react";
 
-const Part = ({props}) => {
-  const { name, exercises } = props;
+const Part = ({part}) => {
   
 
   return (
     <>
       <p>
-        {name} {exercises}
+        {part.name} {part.exercises}
       </p>
     </>
   );

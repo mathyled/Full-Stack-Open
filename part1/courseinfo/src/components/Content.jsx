@@ -1,12 +1,18 @@
 import React from "react";
 import Part from "./Part";
 
-const Content = ({part}) => {
-  console.log(part);
+const Content = ({parts}) => {
   
+  const [part1, part2, part3] = parts;
+
+  // console.log(part1);
+  
+
   return (
     <>
-   <Part props={part}/>
+   <Part part={part1}/>
+   <Part part={part2}/>
+   <Part part={part3}/>
     </>
   );
 };
