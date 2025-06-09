@@ -1,12 +1,11 @@
 import React from "react";
+import Part from "./Part";
 
 const Content = (props) => {
-  const { part, exercises } = props;
+  
   return (
     <>
-      <p>
-        {part} {exercises}
-      </p>
+   <Part props={props}/>
     </>
   );
 };
