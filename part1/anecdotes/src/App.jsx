@@ -34,11 +34,17 @@ function App() {
     console.log(copy);
   };
 
+    const mostVoted = Math.max(...votes);
+    const indexMostVoted = votes.indexOf(mostVoted)
+
   return (
     <>
+    <h2>Anecdote of the day</h2>
       <p>{anecdotes[selected]}</p>
       <button onClick={handleButtonVote}>vote</button>
       <button onClick={handleButton}>next anecdote</button>
+      <h2>Anecdote with most votes</h2>
+      <p>{anecdotes[indexMostVoted]}</p>
     </>
   );
 }
