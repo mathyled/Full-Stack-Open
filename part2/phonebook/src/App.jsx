@@ -26,18 +26,33 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const existingContact = contacts.some(
+    const isAdded = contacts.find(
       (contact) => contact.name === newContact.name
     );
 
-    if (existingContact) {
-      alert(`${newContact.name} is already added to phonebook`);
+    const newObject = {
+      name: newContact.name,
+      number: newContact.number,
+    };
+
+    if (isAdded) {
+      window.confirm(
+        `${newContact.name} is already added to phonebook, replace the old number with a new one?`
+      );
+      console.log(isAdded.id);
+
+      notesService
+        .update(isAdded.id, newObject)
+        .then((response) => {
+          const updatedContacts = contacts.map((contact) =>
+            contact.id === isAdded.id ? response.data : contact
+          );
+          setContacts(updatedContacts);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
-      const newObject = {
-        name: newContact.name,
-        number: newContact.number,
-      };
-      axios;
       notesService.create(newObject).then((response) => {
         console.log(response);
         setContacts([...contacts, response.data]);
@@ -45,15 +60,18 @@ function App() {
     }
   };
   const handleDelete = (id) => {
-    const newSelected = contacts.filter((person) => person.id !== id);
     const personToDelete = contacts.find((person) => person.id === id);
-      console.log(personToDelete);
-      if (window.confirm(`Delete ${personToDelete.name} ?`)) {
+    console.log(personToDelete);
+    if (window.confirm(`Delete ${personToDelete.name} ?`)) {
+      notesService.deletePerson(personToDelete.id).then((response) => {
+        const newSelected = contacts.filter(
+          (person) => person.id !== response.data.id
+        );
         setContacts(newSelected);
-      }
+      });
+    }
   };
 
-  
   const handlerFilterInput = (e) => {
     setInputFilter(e.target.value);
   };
