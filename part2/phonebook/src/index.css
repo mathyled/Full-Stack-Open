@@ -12,3 +12,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+.added {
+  color: azure;
+  font-weight: bold;
+  background-color: rgb(44, 169, 46);
+}
+
+
+.error {
+  color: red;
+  background-color: lightgray;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
